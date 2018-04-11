@@ -23,13 +23,24 @@ function startSession($userid){
 <head>
   <title>1v1 Fantasy</title>
   <link rel = "stylesheet" href = "styleLogin.css">
+  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
 </head>
 <body>
+  <div class= 'blueline'>
+    <p>no display</p>
+  </div>
+  <div class = 'title'>
+    <h1>Agro-Draft</h1>
+  </div>
+  <div class= 'pinkline'>
+    <p>no display</p>
+  </div>
   <!-- containers to hold login/"or"/new user fields-->
   <div id = "container">
     <div class = "section" id = "new">
       <!-- form to create new user account -->
-      <p class = "loginhead"><strong>CREATE NEW USER</strong></p>
+      <p class = "loginhead"><u>CREATE NEW USER</u></p>
       <form class = "form" action = "login.php" method = "POST">
         <p><span>Username</span>
         <input type = "text" name = "createusername"/></p><br/>
@@ -44,13 +55,9 @@ function startSession($userid){
         ?></p>
     </div>
 
-    <div class = "section" id = "or">
-      <p><strong>OR</strong></p>
-    </div>
-
     <div class = "section" id = "existing">
       <!-- form to log in to an existing user account-->
-      <p class = "loginhead"><strong>LOG IN</strong></p>
+      <p class = "loginhead"><u>LOG IN</u></p>
       <form class = "form" action = "login.php" method = "POST">
         <p><span>Username</span>
         <input type = "text" name = "checkusername"/></p><br/>
@@ -63,6 +70,17 @@ function startSession($userid){
         <?php
           include 'verifyLogIn.php';
         ?></p>
+    </div>
+  </div>
+  <div id = 'footer'>
+    <div class= 'pinkline'>
+      <p>no display</p>
+    </div>
+    <div class = 'title' id = 'hide'>
+      <h1>no display</h1>
+    </div>
+    <div class= 'blueline'>
+      <p>no display</p>
     </div>
   </div>
 </body>
