@@ -9,12 +9,12 @@ $create_user = $pdo->prepare("INSERT INTO USERS (userid, password, name) VALUES 
 //function to start a session for a given userid after they logged in
 function startSession($userid){
   session_start();
-  echo "Session started for userid: $userid";
+  //echo "Session started for userid: $userid";
   //assign this userid to the session variable
   $_SESSION['userid'] = $userid;
-  echo '<p id = "draft"><a href="draft.php">Go to draft page</a></p>';
-  echo '<p id = "draft"><a href="homePage.php">Go to home page</a></p>';
-  echo '<p id = "draft"><a href="scrapeGame.php">Go to scrape page</a></p>';
+  echo '<p class = "draft"><a href="draft.php">Go to draft page</a></p>';
+  echo '<p class = "draft"><a href="homePage.php">Go to home page</a></p>';
+  echo '<p class = "draft"><a href="scrapeGame.php">Go to scrape page</a></p>';
 }
 ?>
 
@@ -49,10 +49,6 @@ function startSession($userid){
         <input class = "button" type = "submit" name = "submit" value = "Create New User"/>
       </form>
       <!-- verify the new user info with php code-->
-      <p class = 'error'>
-        <?php
-          include 'verifyNewUser.php';
-        ?></p>
     </div>
 
     <div class = "section" id = "existing">
@@ -66,12 +62,11 @@ function startSession($userid){
         <input class = "button" type = "submit" name = "submit" value = "Log In"/>
       </form>
       <!-- verify the login info with php code-->
-      <p class = 'error'>
-        <?php
-          include 'verifyLogIn.php';
-        ?></p>
     </div>
   </div>
+  <?php
+    include 'verifyLogIn2.php';
+  ?>
   <div id = 'footer'>
     <div class= 'pinkline'>
       <p>no display</p>

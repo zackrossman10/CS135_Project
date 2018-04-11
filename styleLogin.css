@@ -84,7 +84,7 @@ h1{
 }
 
 .section {
-  margin-top: 50px;
+  margin-top: 35px;
   display: inline-block;
   margin-left: 50px;
   margin-right: 50px;
@@ -92,6 +92,7 @@ h1{
   background-color: rgba(44,186,227);
   padding-left: 16px;
   padding-right: 16px;
+  padding-bottom: 16px;
 }
 
 .form p{
@@ -109,8 +110,16 @@ h1{
 
 }
 
+.error{
+  background-color: 	#e03c3c;
+  width: 40%;
+  margin: 30px auto;
+  line-height: 40px;
+}
 
-
-
-  	#ffa528
-    	#ffb800
+.pass{
+  padding: 16px 16px;
+  width: 30%;
+  margin: 30px auto;
+  background-color: rgba(44,186,227);
+}
