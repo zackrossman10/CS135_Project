@@ -12,6 +12,7 @@ if(isset($_POST["createusername"])){
     $exists_user->execute(["$username"]);
     $userid = $exists_user->fetchColumn(0);
     startSession($userid);
+    include "draftPrep.php";
   }else{
     echo "Username already exists";
   }

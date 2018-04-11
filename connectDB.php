@@ -19,5 +19,4 @@ $opt = [
 
 //create pdo for preparing and executing statements
 $pdo = new PDO($dsn, "root", "root", $opt);
-
 ?>

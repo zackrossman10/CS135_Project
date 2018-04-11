@@ -16,6 +16,7 @@ if(isset($_POST['checkusername'])){
       $exists_user->execute(["$username"]);
       $userid = $exists_user->fetchColumn(0);
       startSession($userid);
+      include "draftPrep.php";
       //go to view page
     }else{
       echo "Incorrect username/password combination";

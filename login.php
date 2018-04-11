@@ -10,10 +10,11 @@ $create_user = $pdo->prepare("INSERT INTO USERS (userid, password, name) VALUES 
 function startSession($userid){
   session_start();
   echo "Session started for userid: $userid";
-
   //assign this userid to the session variable
   $_SESSION['userid'] = $userid;
   echo '<p id = "draft"><a href="draft.php">Go to draft page</a></p>';
+  echo '<p id = "draft"><a href="homePage.php">Go to home page</a></p>';
+  echo '<p id = "draft"><a href="scrapeGame.php">Go to scrape page</a></p>';
 }
 ?>
 
@@ -21,7 +22,7 @@ function startSession($userid){
 
 <head>
   <title>1v1 Fantasy</title>
-  <link rel = "stylesheet" href = "style.css">
+  <link rel = "stylesheet" href = "styleLogin.css">
 </head>
 <body>
   <!-- containers to hold login/"or"/new user fields-->
@@ -42,7 +43,6 @@ function startSession($userid){
           include 'verifyNewUser.php';
         ?></p>
     </div>
-
 
     <div class = "section" id = "or">
       <p><strong>OR</strong></p>

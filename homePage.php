@@ -80,28 +80,6 @@ $count = mysqli_fetch_assoc($result2)['num']; // check if the teamid is in the t
 // let the user know and direct them to the draft page link
 if ($count == 0){
   echo "It seems you haven't drafted a team! Click the 'Draft' link below to select your team!";
-  echo"
-          <table style='width:100%; border: 1px solid black'>
-            <tr style = 'border: 1px solid black'>
-                <th>Team Name </th>
-                <th>Player 1  </th>
-                <th>Player 2  </th>
-                <th>Player 3  </th>
-                <th>Player 4   </th>
-                <th>Player 5   </th>
-                <th>Player 6   </th>
-                <th>Goalie      </th>
-              </tr>
-              <tr style = 'border: 1px solid black'>
-                  <th>Blues </th>
-                  <th>Ethan  </th>
-                  <th>Zack  </th>
-                  <th>Harry  </th>
-                  <th>Charlie   </th>
-                  <th>Noah   </th>
-                  <th>Peter   </th>
-                  <th>Brett      </th>
-                </tr> </table>  ";
 }else{
   $rowTeam = "SELECT * FROM TEAMS WHERE $uid = teamid"; // select the userid
   $teamName = fetchInfo($conn, $rowTeam, 'name');

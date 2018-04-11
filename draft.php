@@ -89,7 +89,12 @@ if(isset($_POST['playerid'])){
         echo "<input type = 'text' name = 'teamname'></form";
       }else{
         //then prompt them to go to home page
-        echo "<a href='homePage.php'>Great! Go to team home page</a>";
+        $userid = $_SESSION['userid'];
+        $getName = $pdo->prepare("SELECT name FROM TEAMS WHERE teamid = $userid");
+        $getName->execute();
+        $teamName = $changeName->fetchColumn(1);
+        echo '<p>Great! Your team name is "'.$teamname.'"</p>';
+        echo "<a href='homePage.php'>Go to team home page</a>";
       }
     }
   ?>

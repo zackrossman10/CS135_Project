@@ -12,6 +12,7 @@ CREATE TABLE FIELD_PLAYERS(
   name VARCHAR(256) NOT NULL,
   team VARCHAR(256) NOT NULL,
   shots INT NOT NULL,
+  goals INT NOT NULL,
   assists INT NOT NULL,
   points INT NOT NULL,
   exclusions INT NOT NULL,
@@ -30,7 +31,7 @@ CREATE TABLE GOALIES(
 );
 
 CREATE TABLE GAMEURLS(
-  gameid INT NOT NULL PRIMARY KEY,
+  gameid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   urls VARCHAR(256) NOT NULL
 );
 
@@ -42,20 +43,27 @@ CREATE TABLE USERS(
 
 CREATE TABLE TEAMS(
   teamid INT NOT NULL,
+  name VARCHAR(256),
+  fp1id INT,
+  fp2id INT,
+  fp3id INT,
+  fp4id INT,
+  fp5id INT,
+  fp6id INT,
+  gid INT,
+  FOREIGN KEY (teamid) REFERENCES USERS (userid)
+);
+
+CREATE TABLE DRAFTED(
+  playerid INT NOT NULL,
+  cap_num VARCHAR(256) NOT NULL,
   name VARCHAR(256) NOT NULL,
-  fp1id INT NOT NULL,
-  fp2id INT NOT NULL,
-  fp3id INT NOT NULL,
-  fp4id INT NOT NULL,
-  fp5id INT NOT NULL,
-  fp6id INT NOT NULL,
-  gid INT NOT NULL,
-  FOREIGN KEY (teamid) REFERENCES USERS (userid),
-  FOREIGN KEY (fp1id) REFERENCES FIELD_PLAYERS (playerid),
-  FOREIGN KEY (fp2id) REFERENCES FIELD_PLAYERS (playerid),
-  FOREIGN KEY (fp3id) REFERENCES FIELD_PLAYERS (playerid),
-  FOREIGN KEY (fp4id) REFERENCES FIELD_PLAYERS (playerid),
-  FOREIGN KEY (fp5id) REFERENCES FIELD_PLAYERS (playerid),
-  FOREIGN KEY (fp6id) REFERENCES FIELD_PLAYERS (playerid),
-  FOREIGN KEY (gid) REFERENCES GOALIES (goalieid)
+  team VARCHAR(256) NOT NULL,
+  shots INT NOT NULL,
+  goals INT NOT NULL,
+  assists INT NOT NULL,
+  points INT NOT NULL,
+  exclusions INT NOT NULL,
+  drawn_exc INT NOT NULL,
+  steals INT NOT NULL
 );

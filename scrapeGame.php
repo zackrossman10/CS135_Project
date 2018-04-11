@@ -6,14 +6,14 @@ include 'connectDB.php';
 if(isset($_POST['address'])){
 
   //check that the game has not already been inputed
-  $unique_game = $pdo->prepare("SELECT * FROM GAMES WHERE urls = ?");
+  $unique_game = $pdo->prepare("SELECT * FROM GAMEURLS WHERE urls = ?");
   $unique_game->execute([$_POST['address']]);
 
   if($unique_game->rowCount() == 0){
     echo "Data uploading, please wait...<br/>";
     //if game has not been entered, enter it into GAMES table...
-    $insert = $pdo->prepare("INSERT INTO GAMES (urls) VALUES (?)");
-    $insert->execute([$_POST['address']]);
+    $insert = $pdo->prepare("INSERT INTO GAMEURLS (gameid, urls) VALUES (?, ?)");
+    $insert->execute([0, $_POST['address']]);
 
     //...then run the query, scraping data into db
     exec('/usr/bin/python /Users/zackrossman/Documents/test.py '.$_POST['address'], $output);
@@ -36,7 +36,7 @@ if(isset($_POST['address'])){
   <title>test</title>
 </head>
 <body>
-  <form action = "test.php" method = "POST">
+  <form action = "scrapeGame.php" method = "POST">
     <strong>The Fosh</strong> Box Score Address<br/>
     <input type = "address" name = "address"/>
     <input type = "submit" name = "submit" value = "submit"/>
