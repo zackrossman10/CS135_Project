@@ -17,16 +17,12 @@ function fetchInfo($db, $queryResult, $value){
   $r2 = mysqli_fetch_assoc($r)[$value]; //
   return $r2;
 }
-
-
 function redirect($url) {
   ob_start();
   header('Location: '.$url);
   ob_end_flush();
   die();
 }
-
-
 ?>
 
 <!DOCTYPE html>

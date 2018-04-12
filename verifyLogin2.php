@@ -38,7 +38,7 @@ if(isset($_POST['checkusername'])){
     $password = $_POST['createpassword'];
     $create_user->execute([0, "$password", "$username"]);
     echo "<div class = 'pass'";
-    echo "<p class = 'draft'>New user created -- Welcome $username</p>";
+    echo "<p class = 'draft'><span class = 'green'>New user created</span> -- Welcome <u>$username</u></p>";
     $exists_user->execute(["$username"]);
     $userid = $exists_user->fetchColumn(0);
     startSession($userid);

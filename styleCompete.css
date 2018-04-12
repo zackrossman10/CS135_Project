@@ -68,24 +68,9 @@ body{
   text-align: center;
 }
 
-thead tr{
-  display: block;
-  background-color: #284fb6;
-  color: #f2f2f2;
-  font-size: 10px;
-  height: 19px;
-  padding-top: 5px;
-  padding-left: 5px;
-}
-
 table{
   border-collapse: collapse;
   border: 1px solid #000;
-}
-
-tbody {
-  display: block;
-  overflow-y: auto;
 }
 
 tbody tr:hover {
@@ -111,8 +96,10 @@ tbody td{
   margin-right: 10px;
 }
 
-#undrafted tbody{
-  max-height: 300px;
+.section{
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
 }
 
 #drafted{
@@ -138,11 +125,6 @@ tbody td{
   margin: 0px auto;
 }
 
-.cap_num{
-  text-align: center;
-  width: 75px;
-}
-
 .name{
   text-align: center;
   width: 200px;
@@ -155,7 +137,7 @@ tbody td{
 
 .position{
   text-align: center;
-  width: 100px;
+  width: 50px;
   padding: 0 0;
 }
 
@@ -165,7 +147,7 @@ tbody td{
 
 u{
   text-decoration: none;
-  border-bottom: 3px solid #e7e042;
+  border-bottom: 2px solid #e7e042;
 }
 
 input[type="submit"] {
@@ -196,4 +178,57 @@ a{
 .title p{
   font-size: 20px;
   margin: 0 0;
+}
+
+.goalies{
+  margin: 0 auto;
+}
+
+.header td{
+  background-color: #284fb6;
+  color: #f2f2f2;
+  padding-bottom: 5px;
+}
+
+h4{
+  font-size: 40px;
+  margin: 10px 0px;
+}
+
+h4 u{
+  text-decoration: none;
+  border-bottom: 3px solid #284fb6;
+}
+
+.stat{
+  column-width: 30px;
+}
+
+.tie{
+  background-color:#00d27f;
+  width: 110px;
+}
+
+.win{
+  background-color: #00d27f;
+  width: 100px;
+}
+
+.loss{
+  background-color: #e03c3c;
+  width: 100px;
+}
+
+.left{
+  display: inline-block;
+  margin-right: 265px;
+  margin-top: 20px;
+}
+
+.right{
+  margin-top: 20px;
+  display: inline-block;
+  margin-right: 260px;
+  float: right;
+
 }

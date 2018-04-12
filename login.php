@@ -27,13 +27,15 @@ function startSession($userid){
   <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
 </head>
 <body>
+  <!--HEADER FOR AGRO-DRAFT-->
   <div class= 'blueline'>
     <p>no display</p>
   </div>
   <div class = 'title'>
     <h1>Agro-Draft</h1>
+    <p>1v1 Fantasy Water Polo</p>
   </div>
-  <div class= 'pinkline'>
+  <div class= 'blueline'>
     <p>no display</p>
   </div>
   <!-- containers to hold login/"or"/new user fields-->
@@ -68,7 +70,7 @@ function startSession($userid){
     include 'verifyLogIn2.php';
   ?>
   <div id = 'footer'>
-    <div class= 'pinkline'>
+    <div class= 'blueline'>
       <p>no display</p>
     </div>
     <div class = 'title' id = 'hide'>

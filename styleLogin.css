@@ -1,12 +1,9 @@
-@import url(https://fonts.google.com/specimen/Righteous?selection.family=Righteous);
-@import url(https://fonts.google.com/specimen/Bungee+Inline?selection.family=Bungee+Inline);
-
 body {
   text-align: center;
   background-image: url("Pictures/HomePageBackGround.jpg");
   background-size: 100% auto;
   margin: 0px 0px;
-    font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee Inline', cursive;
 }
 
 .title{
@@ -20,7 +17,7 @@ body {
 
 u{
   text-decoration: none;
-    border-bottom: 3px solid black;
+  border-bottom: 3px solid #e7e042;
 }
 
 h1{
@@ -41,20 +38,6 @@ h1{
 }
 
 .blueline p{
-  margin-top: 0px;
-  margin-bottom: 0px;
-  line-height: 5px;
-  font-size: 1px;
-}
-
-.pinkline{
-  background-color: #f595f6;
-  color: #f595f6;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.pinkline p{
   margin-top: 0px;
   margin-bottom: 0px;
   line-height: 5px;
@@ -84,15 +67,17 @@ h1{
 }
 
 .section {
-  margin-top: 35px;
+  font-size: 15px;
+  margin-top: 25px;
   display: inline-block;
   margin-left: 50px;
   margin-right: 50px;
   vertical-align: top;
-  background-color: rgba(44,186,227);
+  background-color: #284fb6;
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 16px;
+  color: #f2f2f2;
 }
 
 .form p{
@@ -111,7 +96,7 @@ h1{
 }
 
 .error{
-  background-color: 	#e03c3c;
+  background-color: #e03c3c;
   width: 40%;
   margin: 30px auto;
   line-height: 40px;
@@ -121,5 +106,35 @@ h1{
   padding: 16px 16px;
   width: 30%;
   margin: 30px auto;
-  background-color: rgba(44,186,227);
+  background-color: #284fb6;
+  color: #f2f2f2;
+}
+
+input[type="submit"] {
+    background-color: #e7e042;
+    width: 125px; /* width of image */
+    height: 25px; /* height of image */
+    border: 0;
+    font-family: 'Bungee Inline' ;
+}
+
+.green{
+  color: #00d27f;
+}
+
+a{
+  background-color: #00d27f;
+   color: black;
+   text-decoration: none;
+   padding: 5px 5px;
+}
+
+input[type='text']{
+  font-family: 'Bungee Inline' ;
+  font-size: 15px;
+}
+
+.title p{
+  font-size: 20px;
+  margin: 0 0;
 }

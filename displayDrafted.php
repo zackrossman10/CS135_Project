@@ -29,7 +29,7 @@
     }
 
     //name for the column header
-    $position = "Field Player ".$i;
+    $position = "FP ".$i;
     //display information
     echo "<tr class = 'playerInfo'>
             <td class = 'position'>$position</td>

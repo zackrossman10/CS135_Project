@@ -4,8 +4,7 @@ session_start();
 //connect to db and set up pdo
 include_once "connectDB.php";
 
-//start session
-print_r($_SESSION);
+//print_r($_SESSION);
 //get the userid
 $userid = $_SESSION['userid'];
 
@@ -13,12 +12,6 @@ $userid = $_SESSION['userid'];
 $exists_user = $pdo->prepare("SELECT * FROM USERS WHERE userid = ?");
 $exists_user->execute([$userid]);
 $username = $exists_user->fetchColumn(2);
-$exists_team = $pdo->prepare("SELECT * FROM TEAMS WHERE teamid = ?");
-$exists_team->execute([$userid]);
-if($exists_team->rowCount()==0){
-  $create_team = $pdo->prepare("INSERT INTO TEAMS (teamid, name, fp1id, fp2id, fp3id, fp4id, fp5id, fp6id, gid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $create_team->execute([$_SESSION['userid'], "HELLO", 0, 0, 0, 0, 0, 0, 0]);
-}
 
 //find the name of which column to insert field players into
 function findIndex(){
@@ -60,7 +53,7 @@ if(isset($_POST['playerid'])){
   //if team name is entered
   $teamid = $_SESSION['userid'];
   $teamname = $_POST['teamname'];
-  $changeName = $pdo->prepare("UPDATE TEAMS SET name = '$teamname' WHERE teamid = $teamid");
+  $changeName = $pdo->prepare("UPDATE TEAMS SET name = '".$teamname."' WHERE teamid = $teamid");
   $changeName->execute();
 }
 ?>
@@ -70,34 +63,43 @@ if(isset($_POST['playerid'])){
   <title>1v1 Fantasy Draft</title>
   <link rel = "stylesheet" href="styleDraft.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
 </head>
 <body>
-  <div class = "header">
-    <p><strong>DRAFT PAGE</strong>
-    <p><strong>User: </strong><?php
-        echo $username;
-       ?></p>
+  <!--HEADER FOR AGRO-DRAFT-->
+  <div class= 'blueline'>
+    <p>no display</p>
   </div>
-
+  <div class = 'title'>
+    <h1>Agro-Draft</h1>
+    <p>1v1 Fantasy Water Polo</p>
+  </div>
+  <div class= 'blueline'>
+    <p>no display</p>
+  </div>
+  <div class = 'header'>
   <?php
     //if user has finished drafting...
     if(isset($_SESSION['allDrafted'])){
       if(!isset($_POST['teamname'])){
         //prompt them to name their team
-        echo "You drafted your team! Now give it a name:";
+        echo "<p>You drafted your team! Now give it a name</p>";
         echo "<form method = 'POST' action = 'draft.php'>";
-        echo "<input type = 'text' name = 'teamname'></form";
+        echo "<p>Team Name</p><input type = 'text' name = 'teamname'></form>";
       }else{
         //then prompt them to go to home page
         $userid = $_SESSION['userid'];
         $getName = $pdo->prepare("SELECT name FROM TEAMS WHERE teamid = $userid");
         $getName->execute();
         $teamName = $changeName->fetchColumn(1);
-        echo '<p>Great! Your team name is "'.$teamname.'"</p>';
-        echo "<a href='homePage.php'>Go to team home page</a>";
+        echo '<p>Great! Your team name is "'.$teamname.'"</p><br/>';
+        echo "<a href='compete.php'>Go to team home page</a>";
       }
+    }else{
+      echo "<p>Currently <span class = 'green'>drafting</p>";
     }
   ?>
+  </div>
 
   <div id = 'container'>
     <!--display all the possible players that can be drafted-->
@@ -106,10 +108,10 @@ if(isset($_POST['playerid'])){
       <table id = "undrafted">
         <thead>
           <tr>
-            <th class = 'position'>Action</th>
-            <th class = 'cap_num'>Number</th>
-            <th class = 'name'>Player</th>
-            <th class = 'team'>Team</th>
+            <th class = 'position'><u>Action</u></th>
+            <th class = 'cap_num'><u>Number</u></th>
+            <th class = 'name'><u>Player</u></th>
+            <th class = 'team'><u>Team</u></th>
           </tr>
         </thead>
         <tbody>
@@ -128,7 +130,7 @@ if(isset($_POST['playerid'])){
       <?php
       //change the header for the "drafted" table if all players have been drafted
         if(isset($_SESSION['allFPDrafted'])){
-          echo "<h4>YOUR TEAM!</h4>";
+          echo "<h4><span class = 'green'>YOUR TEAM!</span><h4>";
         }else{
           echo "<h4>Drafted</h4>";
         }
@@ -136,10 +138,10 @@ if(isset($_POST['playerid'])){
       <table id = "drafted">
         <thead>
           <tr>
-            <th class = 'position'>Position</th>
-            <th class = 'cap_num'>Number</th>
-            <th class = 'name'>Player</th>
-            <th class = 'team'>Team</th>
+            <th class = 'position'><u>Position</u></th>
+            <th class = 'cap_num'><u>Number</u></th>
+            <th class = 'name'><u>Player</u></th>
+            <th class = 'team'><u>Team</u></th>
           </tr>
         </thead>
         <tbody>
