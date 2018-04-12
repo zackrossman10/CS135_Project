@@ -2,30 +2,15 @@
 // Home page after login
 //function to start a session for a given userid after they logged in
 session_start();
-function startSession($userid){
-  session_start();
-  print_r($_SESSION);
-  echo "Session started for userid: $userid";
-  if(!isset($_SESSION['userid'])) {
-    //assign this userid to the session variable
-    $_SESSION['userid'] = $userid;
-  }
-}
+print_r($_SESSION);
+
 function fetchInfo($db, $queryResult, $value){
   $r = mysqli_query($db, $queryResult); //
   $r2 = mysqli_fetch_assoc($r)[$value]; //
   return $r2;
 }
-function redirect($url) {
-  ob_start();
-  header('Location: '.$url);
-  ob_end_flush();
-  die();
-}
+
 ?>
-
-<!DOCTYPE html>
-
 
 <?php
 // reports.php by Ethan Lewis
@@ -41,30 +26,47 @@ if ($conn->connect_error) {
 }else{
   echo "Connected <br>";
 }
-$uid = $_SESSION['userid']; // grab the user id from the session
+
+// grab the user id from the login page
+$uid = $_SESSION['userid'];
+if (!isset($_POST['userid'])){
+  $uid = $_SESSION['userid']; // grab the user id from the session
+  echo "userid: ". $uid;
+}
 $result = "SELECT name FROM USERS WHERE userid = $uid"; // select the name from userid
 $result2 = mysqli_query($conn, $result); //
 $name = mysqli_fetch_assoc($result2)['name']; // get name association
 $_SESSION['name'] = $name;
-//startSession($uid);
-//print_r($uid);
+
+// check if the a team exists given the user id
 $isInTable = "SELECT count(*)  as num FROM TEAMS WHERE teamid = $uid";
 $result2 = mysqli_query($conn, $isInTable); //
 $count = mysqli_fetch_assoc($result2)['num']; // check if the teamid is in the teams table
-// this could be problematic, not sure if its count(*);
-//print_r($count);
 ?>
 
+<!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 <title>Home Page</title>
-<link rel="stylesheet" type="text/css" href="homepageStyle.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="styleLogin.css">
+<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
+
 </head>
 
 <body>
+
+  <div class= 'blueline'>
+    <p>no display</p>
+  </div>
+  <div class = 'title'>
+    <h1>Agro-Draft</h1>
+  </div>
+  <div class= 'pinkline'>
+    <p>no display</p>
+  </div>
 
 <h2>Welcome <?php
   $name = $_SESSION['name'];
@@ -76,7 +78,7 @@ if ($count == 0){
   echo "It seems you haven't drafted a team! Click the 'Draft' link below to select your team!";
   echo '<p><a href="draft.php">Draft</a></p>';
 }else{
-  $rowTeam = "SELECT * FROM TEAMS WHERE $uid = teamid"; // select the userid
+  $rowTeam = "SELECT * FROM TEAMS WHERE teamid = $uid"; // select the userid
   $teamName = fetchInfo($conn, $rowTeam, 'name');
   echo $name ."'s' " . $teamName;
   // grab all team members of a specific team.
@@ -129,44 +131,34 @@ if ($count == 0){
 
 
 <?php
+
 // validation for compete form
+$test = 'test';
 $validCompete = true;
 $oppNameErr = $teamNameErr  = $foshErr= "";
 if (isset($_POST['compete'])) {
-  // verify the compete entries
-  if (empty($_POST["teamName"])) { // if the field element name is empty
-   $teamNameErr = "Team Name is required"; // define the name error variable with the error message
-   $validCompete = false;
+  $_SESSION['test'] = $test;
+  // // verify the compete entries
+if (empty($_POST["oppName"])) { // if the field element name is empty
+  $oppNameErr = "Opponents Team Name is required"; // define the name error variable with the error message
+  $validCompete = false;
   } else {
-   $teamName = $_POST["teamName"]; // if the element is not empty, set $name to the value
-   // This query checks to see if the users team name is in the database
-   $isInTable = "SELECT count(*) as num FROM TEAMS WHERE name = $teamName";
-   $count = fetchInfo($conn, $isInTable, 'num'); // count should be 1 if in database
-   // verify by writing queries into db! Do this next!
-   if ($count == 0){
-     $teamNameErr = "That doesn't seem to be your team name, sorry!";
-     $validCompete = false;
+    $oppName = $_POST["oppName"]; // if the element is not empty, set $name to the value
+    // This query checks to see if the opponents name is in the database
+    $isInTable = "SELECT count(*) as num FROM TEAMS WHERE name = $oppName";
+    $count = fetchInfo($conn, $isInTable, 'num'); // count should be 1 if in database
+    // verify by writing queries into db! Do this next!
+  if ($count == 0){
+    $oppNameErr = "That doesn't seem to be a valid team, sorry!";
+    $validCompete = false;
   }
 }
-if (empty($_POST["oppName"])) { // if the field element name is empty
- $oppNameErr = "Opponents Team Name is required"; // define the name error variable with the error message
- $validCompete = false;
-  } else {
- $oppName = $_POST["oppName"]; // if the element is not empty, set $name to the value
- // This query checks to see if the opponents name is in the database
- $isInTable = "SELECT count(*) as num FROM TEAMS WHERE name = $oppName";
- $count = fetchInfo($conn, $isInTable, 'num'); // count should be 1 if in database
- // verify by writing queries into db! Do this next!
-  if ($count == 0){
-   $teamNameErr = "That doesn't seem to be a valid team, sorry!";
-   $validCompete = false;
- }
-}
+$validCompete = true;
 if ($validCompete == true){
-  $_SESSION["teamName"] = $teamName;
+  //$_SESSION["teamName"] = $teamName;
   $_SESSION["oppName"] = $oppName;
   // if form is okay, print a link to the compete page
-  echo '<p><a href="compete.php">Draft</a></p>';
+  echo '<p><a href="compete.php">Click Here to see match!</a></p>';
   }
 }
 
@@ -179,36 +171,34 @@ if (isset($_POST['update'])){
   } else {
     $foshURL = $_POST["foshURL"]; // if the element is not empty, set $name to the value
     // verify by writing queries into db! Do this next!
-  $foshErr = "Not a valid fosh URL!";
+    //$foshErr = "Not a valid fosh URL!";
   }
 
   // if a correct FOSH URL was added, set the session variable to local variable
-  if ($validCompete == true){
+  if ($validFOSH == true){
     $_SESSION["foshURL"] = $foshURL;
   }
 }
 ?>
 
-<p>Want to compete? </p>
-<p> Simply enter your team name and your opponents</p>
-<p> To update player stats, enter a week that was played on the FOSH</p>
 <fieldset>
+<div class = "comp">
+  <p>Want to compete? </p>
+  <p> Simply enter the opponents team name</p>
 <div class = "section">
 <form name="compete" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-  <legend for="teamName">Team Name:
-  <input type="text" name="teamName" value=""> </legend>
-  <span style = 'color: red'> <?php echo $teamNameErr;?></span>
-  <br></br>
 
   <legend for="oppName">Opponents Team Name:
   <input type="text" name="oppName" value=""> </legend>
   <span style = 'color: red'> <?php echo $oppNameErr;?></span>
   <br></br>
+  <p><input type="submit" value="Compete!"/></p>
 
-<p><input type="submit" value="Compete!"/></p>
 </form>
 </div>
-
+</div>
+<div class = "fosh">
+<p> To update player stats, enter a week that was played on the FOSH</p>
 <div class = "section">
 <form name="update" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   <legend for="foshURL">FOSH URL:
@@ -217,9 +207,22 @@ if (isset($_POST['update'])){
   <p><input type="submit" value="Update!"/></p>
   <br></br>
 </form>
-<div>
+</div>
+</div>
 
 </fieldset>
+
+<div id = 'footer'>
+  <div class= 'pinkline'>
+    <p>no display</p>
+  </div>
+  <div class = 'title' id = 'hide'>
+    <h1>no display</h1>
+  </div>
+  <div class= 'blueline'>
+    <p>no display</p>
+  </div>
+</div>
 
 </body>
 
