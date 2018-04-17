@@ -37,28 +37,6 @@ h1{
   font-size: 1px;
 }
 
-#footer .pinkline{
-  margin-left: 0;
-  margin-right: 0;
-}
-
-#footer .blueline{
-  margin-left: 0;
-  margin-right: 0;
-}
-
-#footer .title{
-  margin-left: 0;
-  margin-right: 0;
-}
-
-#footer{
-  bottom: 0;
-  position: fixed;
-  width: 80%;
-  margin-left: 10%;
-}
-
 u{
   text-decoration: none;
   border-bottom: 3px solid black;

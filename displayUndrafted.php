@@ -20,7 +20,7 @@ if(isset($_SESSION['allFPDrafted'])){
          </tr>";
   }
 }else{
-  //while not all 6 field players have been drafted, select field players THAT HAVEN'T BEEN DRAFTED for display 
+  //while not all 6 field players have been drafted, select field players THAT HAVEN'T BEEN DRAFTED for display
   $userid = $_SESSION['userid'];
   $select_players = $pdo->prepare("SELECT * FROM FIELD_PLAYERS WHERE playerid NOT IN (SELECT fp1id FROM TEAMS WHERE teamid = $userid) AND playerid NOT IN (SELECT fp2id FROM TEAMS WHERE teamid = $userid) AND playerid NOT IN (SELECT fp3id FROM TEAMS WHERE teamid = $userid) AND playerid NOT IN (SELECT fp4id FROM TEAMS WHERE teamid = $userid) AND playerid NOT IN (SELECT fp5id FROM TEAMS WHERE teamid = $userid) AND playerid NOT IN (SELECT fp6id FROM TEAMS WHERE teamid = $userid) ORDER BY name, cap_num DESC");
   $select_players->execute();

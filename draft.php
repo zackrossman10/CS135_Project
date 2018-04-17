@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 //connect to db and set up pdo
 include_once "connectDB.php";
 
@@ -80,7 +79,7 @@ if(isset($_POST['playerid'])){
   <div class = 'header'>
   <?php
     //if user has finished drafting...
-    if(isset($_SESSION['allDrafted'])){
+    if($_SESSION['allDrafted']){
       if(!isset($_POST['teamname'])){
         //prompt them to name their team
         echo "<p>You drafted your team! Now give it a name</p>";
@@ -93,7 +92,7 @@ if(isset($_POST['playerid'])){
         $getName->execute();
         $teamName = $changeName->fetchColumn(1);
         echo '<p>Great! Your team name is "'.$teamname.'"</p><br/>';
-        echo "<a href='compete.php'>Go to team home page</a>";
+        echo "<a href='homePage.php'>Go to team home page</a>";
       }
     }else{
       echo "<p>Currently <span class = 'green'>drafting</p>";
@@ -116,7 +115,7 @@ if(isset($_POST['playerid'])){
         </thead>
         <tbody>
           <?php
-            if(!isset($_SESSION['allDrafted'])){
+            if(!$_SESSION['allDrafted']){
               //display all the undrafted players if all players have not been drafted
               include "displayUndrafted.php";
             }

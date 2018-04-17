@@ -49,26 +49,9 @@ h1{
   margin-right: 0;
 }
 
-#footer .blueline{
-  margin-left: 0;
-  margin-right: 0;
-}
-
-#footer .title{
-  margin-left: 0;
-  margin-right: 0;
-}
-
-#footer{
-  bottom: 0;
-  position: fixed;
-  width: 80%;
-  margin-left: 10%;
-}
-
 .section {
   font-size: 15px;
-  margin-top: 25px;
+  margin-top: 70px;
   display: inline-block;
   margin-left: 50px;
   margin-right: 50px;

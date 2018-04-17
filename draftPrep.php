@@ -28,4 +28,6 @@ $delete_team->execute([$userid]);
 $create_team = $pdo->prepare("INSERT INTO TEAMS (teamid, name, fp1id, fp2id, fp3id, fp4id, fp5id, fp6id, gid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 $create_team->execute([$userid, NULL, 0,0,0,0,0,0,0]);
 
+$_SESSION['allDrafted'] = False;
+
  ?>

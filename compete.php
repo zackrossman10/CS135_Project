@@ -3,9 +3,12 @@ session_start();
 include "connectDB.php";
 
 $userid = $_SESSION['userid'];
-$teamName = $_SESSION['name'];
-$opponentName = $_SESSION['name'];
+$getName = $pdo->prepare("SELECT * FROM TEAMS WHERE teamid = $userid");
+$getName->execute();
+$result = $getName->fetch();
+$teamName = $result['name'];
 
+$opponentName = $_SESSION['oppName'];
 //variable to aggregate the scores
 $sum = 0;
  ?>
@@ -97,7 +100,7 @@ $sum = 0;
     <div class = "section" id = "team2">
       <h4><u>
       <?php
-        echo "$opponentName";
+        echo $opponentName;
       ?>
     </u></h4>
     <!--display team 2's field players-->
@@ -116,10 +119,7 @@ $sum = 0;
         <tbody>
         <?php
           //get the opponent's id
-          $selectOpponentTeam = $pdo->prepare("SELECT * FROM USERS WHERE name = '".$opponentName."'");
-          $selectOpponentTeam->execute();
-          $result= $selectOpponentTeam->fetch();
-          $teamid = $result['userid'];
+          $teamid = $_SESSION['oppID'];
           $select_drafted_players = $pdo->prepare("SELECT * FROM TEAMS where teamid = $teamid");
           $select_drafted_players-> execute();
           $results = $select_drafted_players->fetch();

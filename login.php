@@ -69,15 +69,4 @@ function startSession($userid){
   <?php
     include 'verifyLogIn2.php';
   ?>
-  <div id = 'footer'>
-    <div class= 'blueline'>
-      <p>no display</p>
-    </div>
-    <div class = 'title' id = 'hide'>
-      <h1>no display</h1>
-    </div>
-    <div class= 'blueline'>
-      <p>no display</p>
-    </div>
-  </div>
 </body>

@@ -39,7 +39,7 @@ h1{
 
 u{
   text-decoration: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #e7e042;
 }
 
 body{
@@ -51,18 +51,35 @@ table{
   border: 1px solid #000;
 }
 
-tbody tr:hover {
+.info:hover {
   background-color: #e7e042;
 }
 
-tbody td{
+td{
   border: 1px solid #000;
   font-size: 10px;
+  width: 200px;
+  background-color: #f2f2f2;
 }
 
-.header p{
-  margin-top: 30px;
-  margin-bottom: 0px;
+.header{
+  background-color: #284fb6;
+  color: 	#f2f2f2;
+  width: 110px;
+  height: 30px;
+}
+
+.display{
+  text-align: center;
+}
+
+#team{
+  margin: 0 auto;
+}
+
+.section{
+  display: inline-block;
+  margin-left: 70px;
 }
 
 .section{
@@ -95,7 +112,7 @@ input[type="submit"] {
     margin: 0 0;
 }
 
-input[type="submit"]:hover{
+input[type="submit"]{
     background-color:#00d27f;
 }
 
@@ -134,37 +151,4 @@ h4{
 h4 u{
   text-decoration: none;
   border-bottom: 3px solid #284fb6;
-}
-
-.stat{
-  column-width: 30px;
-}
-
-.tie{
-  background-color:#00d27f;
-  width: 110px;
-}
-
-.win{
-  background-color: #00d27f;
-  width: 100px;
-}
-
-.loss{
-  background-color: #e03c3c;
-  width: 100px;
-}
-
-.left{
-  display: inline-block;
-  margin-right: 265px;
-  margin-top: 20px;
-}
-
-.right{
-  margin-top: 20px;
-  display: inline-block;
-  margin-right: 260px;
-  float: right;
-
 }
