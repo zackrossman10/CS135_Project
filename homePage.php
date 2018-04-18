@@ -68,7 +68,7 @@ include "validateHomeForms.php";
     </div>
     <div class = 'section'>
       <div id = "comp">
-        <p>Want to compete? </p>
+        <p class = 'question'><u class = 'question'>Want to compete?</u></p>
         <div class = "section">
             <form name="compete" method="post" action="homePage.php">
               <legend for="oppName">Opponents Username:
@@ -80,7 +80,7 @@ include "validateHomeForms.php";
         </div>
       </div>
       <div id = "fosh">
-        <p> Want to update stats?</p>
+        <p class = 'question'><u class = 'question'> Want to update stats?</u></p>
         <div class = "section">
         <form name="update" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
           <legend for="foshURL">FOSH Box Score URL:

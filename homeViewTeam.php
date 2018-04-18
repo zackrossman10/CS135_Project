@@ -33,7 +33,7 @@ if (fetchInfo($conn, $exists_team_query, "fp1id") == 0){
   $gid = fetchInfo($conn, $rowTeam, 'gid');
   $g = "SELECT name FROM GOALIES WHERE $gid = goalieid";
   $gName = fetchInfo($conn, $g, 'name');
-  echo "<p>Team Name: $teamName</p>";
+  echo "<p class = 'question'><u>Team Name: $teamName</u></p>";
   echo"<table id = 'team'>
           <tr>
               <td class = 'header'><u>Field Player 1</u></td>
