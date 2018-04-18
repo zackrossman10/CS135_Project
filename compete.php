@@ -169,4 +169,5 @@ $sum = 0;
       }
      ?>
   </div>
+  <a class = 'home' href="homePage.php">Go to home page</a>
 </body>

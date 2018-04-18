@@ -12,9 +12,7 @@ function startSession($userid){
   //echo "Session started for userid: $userid";
   //assign this userid to the session variable
   $_SESSION['userid'] = $userid;
-  echo '<p class = "draft"><a href="draft.php">Go to draft page</a></p>';
   echo '<p class = "draft"><a href="homePage.php">Go to home page</a></p>';
-  echo '<p class = "draft"><a href="scrapeGame.php">Go to scrape page</a></p>';
 }
 ?>
 

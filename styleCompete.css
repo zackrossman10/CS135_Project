@@ -208,5 +208,9 @@ h4 u{
   display: inline-block;
   margin-right: 260px;
   float: right;
+}
 
+.home{
+  background-color:	#284fb6;
+  color: #f2f2f2;
 }

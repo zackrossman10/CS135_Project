@@ -35,13 +35,18 @@ if (isset($_POST['foshURL'])){
   if (empty($_POST["foshURL"])) { // if the field element name is empty
     $foshErr = "FOSH URL is required"; // define the name error variable with the error message
   } else {
-    $foshURL = $_POST["foshURL"];
-    $_SESSION["foshURL"] = $foshURL;
-    if(scrape()){
-      $foshComplete = 'Sucessful upload!';
-    }else{
-      $foshErr = 'Game already entered';
-    }
+      $foshURL = $_POST["foshURL"];
+      $val_subset = substr($foshURL, 0, -4);
+      if($val_subset == "http://www.thefosh.net/livestats.php?gameid="){
+        $_SESSION["foshURL"] = $foshURL;
+        if(scrape()){
+          $foshComplete = 'Sucessful upload!';
+        }else{
+          $foshErr = 'Game already entered';
+        }
+      }else{
+        $foshErr = 'Not a valid URL';
+      }
 
   }
 }

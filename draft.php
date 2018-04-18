@@ -3,13 +3,21 @@ session_start();
 //connect to db and set up pdo
 include_once "connectDB.php";
 
-//print_r($_SESSION);
-//get the userid
 $userid = $_SESSION['userid'];
+$exists_team_query= $pdo->prepare("SELECT * FROM TEAMS WHERE teamid = $userid");
+$exists_team_query->execute();
+$rows = $exists_team_query->rowCount();
+
+if ($rows == 0){
+  //if team doesn't already exist, enter an empty team to be drafted into
+  $create_team = $pdo->prepare("INSERT INTO TEAMS (teamid, name, fp1id, fp2id, fp3id, fp4id, fp5id, fp6id, gid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $create_team->execute([$userid, NULL, 0,0,0,0,0,0,0]);
+  $_SESSION['allDrafted'] = False;
+}
 
 //get the username associated with userid
-$exists_user = $pdo->prepare("SELECT * FROM USERS WHERE userid = ?");
-$exists_user->execute([$userid]);
+$exists_user = $pdo->prepare("SELECT * FROM USERS WHERE userid = $userid");
+$exists_user->execute();
 $username = $exists_user->fetchColumn(2);
 
 //find the name of which column to insert field players into

@@ -1,9 +1,13 @@
 <?php
 // if the count variable from php above the html is zero, which means they haven't drafted a team
 // let the user know and direct them to the draft page link
-if (!$_SESSION['allDrafted']){
+$userid = $_SESSION['userid'];
+$exists_team_query = "SELECT * FROM TEAMS WHERE teamid = $userid";
+
+if (fetchInfo($conn, $exists_team_query, "fp1id") == 0){
   echo "Draft a team!";
   echo '<p><a href="draft.php">Draft</a></p>';
+  $_SESSION['allDrafted'] = false;
 }else{
   $rowTeam = "SELECT * FROM TEAMS WHERE teamid = $uid"; // select the userid
   $teamName = fetchInfo($conn, $rowTeam, 'name');
