@@ -152,3 +152,11 @@ h4 u{
   text-decoration: none;
   border-bottom: 3px solid #284fb6;
 }
+
+#logout{
+  background-color: #e03c3c;
+  position: absolute;
+  float: right;
+  right: 10%;
+  top: 16%;
+}

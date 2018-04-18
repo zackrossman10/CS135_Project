@@ -54,6 +54,7 @@ include "validateHomeForms.php";
     <h1>Agro-Draft</h1>
     <p>1v1 Fantasy Water Polo</p>
   </div>
+  <a id = 'logout' href="login.php">Log Out</a>
   <div class= 'blueline'>
     <p>no display</p>
   </div>
