@@ -33,8 +33,9 @@ $name = mysqli_fetch_assoc($result2)['name']; // get name association
 $_SESSION['name'] = $name;
 
 //include code for "scrape" function
-include "scrapeGame.php";
 include "validateHomeForms.php";
+include "scrapeGame.php";
+
 ?>
 
 <!DOCTYPE html>

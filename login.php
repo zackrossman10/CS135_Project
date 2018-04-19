@@ -12,8 +12,11 @@ function startSession($userid){
   //echo "Session started for userid: $userid";
   //assign this userid to the session variable
   $_SESSION['userid'] = $userid;
-  echo '<p class = "draft"><a href="homePage.php">Go to home page</a></p>';
+  header("Location: http://localhost:8888/cs135_MAMP/CS135_Project_MAMP/homePage.php");
+  exit();
 }
+
+include 'verifyLogIn2.php';
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +67,5 @@ function startSession($userid){
       <!-- verify the login info with php code-->
     </div>
   </div>
-  <?php
-    include 'verifyLogIn2.php';
-  ?>
+  <div class = 'error'><p><?php echo $loginerror ?></p></div>
 </body>

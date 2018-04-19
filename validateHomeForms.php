@@ -16,11 +16,13 @@ if(isset($_POST["oppName"])){
       $userid = mysqli_fetch_assoc($result)['userid'];
       $getTeamName = "SELECT name FROM TEAMS WHERE teamid = $userid";
       $teamName = fetchInfo($conn, $getTeamName, 'name');
-      echo "teamname: $teamName";
       if($teamName != NULL){
         $_SESSION["oppName"] = $oppName;
         $_SESSION["oppID"] = $userid;
-        echo '<p><a href="compete.php">Click Here to see match!</a></p>';
+        //go to compete page!!!! immediately
+        header("Location: http://localhost:8888/cs135_MAMP/CS135_Project_MAMP/compete.php");
+        exit();
+        //echo '<p><a href="compete.php">Click Here to see match!</a></p>';
       }else{
         $oppNameErr = "That does seem to be a valid team, sorry!";
       }
