@@ -1,10 +1,15 @@
-<?php
+ <?php
 //include php to connect to db and set up PDO ($pdo)
 include_once 'connectDB.php';
 
 //get ready for querying and entering users
 $exists_user = $pdo->prepare("SELECT * FROM USERS WHERE name = ?");
+$exists_user -> bind_param("s", $name);//protect against sql injection
+
 $create_user = $pdo->prepare("INSERT INTO USERS (userid, password, name) VALUES (?, ?, ?)");
+$create_user -> bind_param("iss", $userid, $password, $name);//protect against sql injection
+
+
 
 //function to start a session for a given userid after they logged in
 function startSession($userid){

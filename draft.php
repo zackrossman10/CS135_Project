@@ -11,6 +11,7 @@ $rows = $exists_team_query->rowCount();
 if ($rows == 0){
   //if team doesn't already exist, enter an empty team to be drafted into
   $create_team = $pdo->prepare("INSERT INTO TEAMS (teamid, name, fp1id, fp2id, fp3id, fp4id, fp5id, fp6id, gid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $create_team -> bind_param("isiiiiiii",$userid, $name, $fp1id, $fp2id, $fp3id, $fp4id, $fp5id, $fp6id, $gid);
   $create_team->execute([$userid, NULL, 0,0,0,0,0,0,0]);
   $_SESSION['allDrafted'] = False;
 }
